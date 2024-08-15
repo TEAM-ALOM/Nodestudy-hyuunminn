@@ -1,27 +1,22 @@
-import { userRouter } from "express";
-import userAuth from "./auth"
-import user from "./user"
+import { Router } from "express";
+
 /**
  * @swagger
- * paht:
+ * tags:
+ *  name: Login
+ *  description: Login management
+ */
+
+/**
+ * @swagger
+ * path:
  *  /login:
  *      post:
- *          summary: "로그인 성공 유무"
- *          description: "Post 방식으로 로그인 성공 유무 전송"
- *          tags:
+ *          summary: login Succ
+ *          tags: [Login]
  *          responses:
  *              "200":
- *                  description: 회원가입
+ *                  description: Login page
  *                  content:
  *                      application/json:
- *                          schema:
- *                              type: object
- *                              properties:
- *                                  message:
- *                                      type: String
- *                                  data:
- *                                      type: ?
- * 
  */
-userRouter.post("/login", userAuth.loginSucc);
-

@@ -1,15 +1,31 @@
+import { Router } from "express";
 import { UserService } from "../service/user.js";
 import jwt from "jsonwebtoken";
 
+const AuthRouter = Router();
+
 const userservice = new UserService();
 
+
 /**
- * @path {POST} http://localhost:3000/login
- * @description POST Method
- * 
+ * @swagger
+ * paths:
+ *  /login:
+ *  post:
+ *    tags: [login]
+ *    summary: 로그인
+ *    parameters:
+ *      - name: code
+ *        in: Post
+ *        type: string
+ *        description: 로그인 정보
+ *    responses:
+ *      "200":
+ *        description: 로그인 성공
+ *  
  */
-exports.loginSucc = async (req, res) => {
-  const {body} = req;
+AuthRouter.post("/login", async (req, res) => {
+  const { body } = req;
   const user = await userservice.get(body.id);
   if (!user) {
     return res.send("사용자를 찾을 수 없습니다.");
@@ -17,7 +33,6 @@ exports.loginSucc = async (req, res) => {
   if (user.password !== body.password) {
     return res.send("비밀번호가 틀립니다.");
   }
-
   const token = jwt.sign(
     {
       type: "JWT",
@@ -35,5 +50,7 @@ exports.loginSucc = async (req, res) => {
     data: token
   }
 
-   res.json({result});
-}
+  return res.send(result);
+});
+
+export default AuthRouter;

@@ -4,12 +4,7 @@ import { UserService } from "../service/user.js";
 const UserRouter = Router();
 const userservice = new UserService();
 
-/**
- * 
- * @path {POST} http://localhost:3000/ 
- * @description POST Method
- */
-exports.Signin = async (req, res) => {
+UserRouter.post("/", async (req, res) => {
   const { body } = req;
   const user = await userservice.post(body);
 
@@ -19,7 +14,7 @@ exports.Signin = async (req, res) => {
   };
 
   res.json(result);
-}
+});
 
 UserRouter.get("/:id", async (req, res) => {
   const id = req.params.id;

@@ -17,5 +17,5 @@ export const swaggerOptions = {
       },
     ],
   },
-  apis: ["./src/schema/user.js", "./src/router/*.js"],
+  apis: ["./src/router/*.js"],
 };

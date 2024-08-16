@@ -17,7 +17,7 @@ mongoose.connect(process.env.DB_URI);
 app.use(express.json());
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
-app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/auth", AuthRouter);
 app.use("/user", UserRouter);
 
